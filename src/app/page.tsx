@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 // Helper component for Font Awesome icons
 const Icon = ({ className }: { className: string }) => (
@@ -37,12 +37,42 @@ const AnimatedInView = ({
   );
 };
 
+// Top Bar Component
+const TopBar = () => (
+  <div className="bg-gray-800 text-white text-sm py-2">
+    <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="flex items-center gap-4">
+        <a
+          href="mailto:resguardolegalmdp@gmail.com"
+          className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
+        >
+          <Icon className="fas fa-envelope" />
+          <span>resguardolegalmdp@gmail.com</span>
+        </a>
+      </div>
+      <div className="flex items-center gap-4">
+        <a
+          href="https://wa.me/5492234567890"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
+        >
+          <Icon className="fab fa-whatsapp" />
+          <span>(0223) 456-7890</span>
+        </a>
+      </div>
+    </div>
+  </div>
+);
+
 // Header Component
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navLinks = [
     { href: "#specialties", label: "Especialidades" },
+    { href: "#team", label: "Equipo" },
     { href: "#about", label: "Quiénes Somos" },
+    { href: "#faq", label: "Preguntas" },
     { href: "#contact", label: "Contacto" },
   ];
   return (
@@ -305,9 +335,74 @@ const Specialties = () => {
   );
 };
 
+// Team Section Component
+const Team = () => {
+  const teamMembers = [
+    {
+      name: "Dra. Oriana Jurich",
+      title: "Abogada Especialista en Derecho Laboral",
+      imageUrl: "https://placehold.co/400x400/a7f3d0/1e3a8a?text=SR",
+      bio: "Con más de 10 años de experiencia, Oriana lidera el área laboral, dedicada a proteger los derechos de los trabajadores.",
+    },
+    {
+      name: "Dr. Marcelo Jurich",
+      title: "Abogado Especialista en Derecho de Familia",
+      imageUrl: "https://placehold.co/400x400/a7f3d0/1e3a8a?text=MV",
+      bio: "Marcelo ofrece un enfoque humano y profesional en casos de familia, buscando siempre el bienestar de sus representados.",
+    },
+    {
+      name: "Dra. Fulanita",
+      title: "Abogada Especialista en Amparos y Civil",
+      imageUrl: "https://placehold.co/400x400/a7f3d0/1e3a8a?text=LT",
+      bio: "Fulanita se especializa en amparos de salud y derecho civil, brindando soluciones rápidas y efectivas a problemas complejos.",
+    },
+  ];
+
+  return (
+    <section id="team" className="py-20 bg-gray-100">
+      <div className="container mx-auto px-6">
+        <AnimatedInView>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Nuestro Equipo
+            </h2>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              Profesionales dedicados a brindarte la mejor asesoría legal.
+            </p>
+          </div>
+        </AnimatedInView>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member, index) => (
+            <AnimatedInView key={member.name} delay={index * 0.1}>
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden text-center h-full flex flex-col">
+                <img
+                  src={member.imageUrl}
+                  alt={`Foto de ${member.name}`}
+                  className="w-full h-56 object-cover"
+                />
+                <div className="p-6 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-emerald-600 font-semibold mb-3">
+                    {member.title}
+                  </p>
+                  <p className="text-gray-600 text-sm flex-grow">
+                    {member.bio}
+                  </p>
+                </div>
+              </div>
+            </AnimatedInView>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // About Us Section Component
 const About = () => (
-  <section id="about" className="py-20 bg-gray-100">
+  <section id="about" className="py-20 bg-white">
     <div className="container mx-auto px-6">
       <div className="flex flex-col md:flex-row items-center gap-12">
         <div className="md:w-1/2">
@@ -343,13 +438,155 @@ const About = () => (
   </section>
 );
 
+// Testimonials Section Component
+const Testimonials = () => {
+  const testimonials = [
+    {
+      quote:
+        "Resolvieron mi despido de forma rápida y profesional. Sentí que mis derechos estuvieron protegidos en todo momento. ¡Totalmente recomendables!",
+      name: "Juan Carlos G.",
+      caseType: "Caso Laboral",
+    },
+    {
+      quote:
+        "Gracias a su gestión, la obra social finalmente cubrió el tratamiento que necesitaba. Su acompañamiento fue fundamental. Excelente equipo.",
+      name: "María Elena F.",
+      caseType: "Amparo de Salud",
+    },
+    {
+      quote:
+        "El proceso de divorcio fue mucho más sencillo de lo que esperaba. Me brindaron contención y una asesoría muy clara. Muy agradecida.",
+      name: "Laura P.",
+      caseType: "Caso de Familia",
+    },
+  ];
+
+  return (
+    <section id="testimonials" className="py-20 bg-gray-100">
+      <div className="container mx-auto px-6">
+        <AnimatedInView>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Qué Dicen Nuestros Clientes
+            </h2>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              La confianza y satisfacción de nuestros clientes es nuestro mayor
+              orgullo.
+            </p>
+          </div>
+        </AnimatedInView>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <AnimatedInView key={index} delay={index * 0.1}>
+              <div className="bg-white p-8 rounded-lg shadow-lg h-full flex flex-col">
+                <Icon className="fas fa-quote-left text-emerald-500 text-3xl mb-4" />
+                <p className="text-gray-600 mb-6 flex-grow">
+                  {`"${testimonial.quote}"`}
+                </p>
+                <div className="mt-auto">
+                  <p className="font-bold text-gray-900">{testimonial.name}</p>
+                  <p className="text-sm text-gray-500">
+                    {testimonial.caseType}
+                  </p>
+                </div>
+              </div>
+            </AnimatedInView>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// FAQ Section Component
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+  const faqs = [
+    {
+      question: "¿La primera consulta tiene costo?",
+      answer:
+        "No, la primera consulta es totalmente gratuita y sin compromiso. Nos permite evaluar tu caso, explicarte tus derechos y los pasos a seguir.",
+    },
+    {
+      question: "¿Qué documentación necesito para iniciar un reclamo laboral?",
+      answer:
+        "Para un reclamo laboral, es útil tener tu DNI, recibos de sueldo, telegramas o cartas documento que hayas enviado o recibido, y cualquier otra prueba de la relación laboral.",
+    },
+    {
+      question: "¿Cuánto tiempo puede durar un proceso judicial?",
+      answer:
+        "La duración varía según la complejidad del caso y el tipo de proceso. En la primera consulta, te daremos una estimación de los plazos posibles para tu situación particular.",
+    },
+    {
+      question: "¿Cómo se establecen los honorarios?",
+      answer:
+        "Nuestros honorarios se basan en la ley y, en muchos casos, se pactan como un porcentaje del resultado favorable del juicio. Priorizamos la transparencia y todo se acuerda por escrito.",
+    },
+  ];
+  //@ts-expect-error bla
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section id="faq" className="py-20 bg-white">
+      <div className="container mx-auto px-6 max-w-4xl">
+        <AnimatedInView>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Preguntas Frecuentes
+            </h2>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              Resolvemos algunas de las dudas más comunes de nuestros clientes.
+            </p>
+          </div>
+        </AnimatedInView>
+        <AnimatedInView delay={0.2}>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="border border-gray-200 rounded-lg">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex justify-between items-center text-left p-5 focus:outline-none"
+                >
+                  <span className="text-lg font-medium text-gray-800">
+                    {faq.question}
+                  </span>
+                  <motion.span
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Icon className="fas fa-chevron-down text-gray-500" />
+                  </motion.span>
+                </button>
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="p-5 pt-0 text-gray-600">{faq.answer}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </AnimatedInView>
+      </div>
+    </section>
+  );
+};
+
 // Contact Section Component
 const Contact = () => {
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus({ message: "Enviando tu mensaje...", type: "info" });
-    // This is a mock submission. In a real app, you'd handle the form submission here.
     setTimeout(() => {
       setFormStatus({
         message:
@@ -362,7 +599,7 @@ const Contact = () => {
     }, 2000);
   };
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-gray-100">
       <div className="container mx-auto px-6">
         <AnimatedInView>
           <div className="text-center mb-12">
@@ -375,93 +612,132 @@ const Contact = () => {
             </p>
           </div>
         </AnimatedInView>
-        <AnimatedInView delay={0.2}>
-          <div className="max-w-4xl mx-auto bg-gray-50 p-8 sm:p-12 rounded-lg shadow-lg">
-            <div className="text-center mb-8">
-              <p className="text-gray-700 text-lg">
-                <Icon className="fas fa-envelope mr-2 text-emerald-600" />
-                <a
-                  href="mailto:resguardolegalmdp@gmail.com"
-                  className="hover:underline"
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <AnimatedInView delay={0.2}>
+            <div className="bg-white p-8 sm:p-12 rounded-lg shadow-lg h-full">
+              <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-gray-700 font-medium mb-2"
+                    >
+                      Nombre Completo
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-gray-700 font-medium mb-2"
+                    >
+                      Correo Electrónico
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <label
+                    htmlFor="message"
+                    className="block text-gray-700 font-medium mb-2"
+                  >
+                    Tu Mensaje
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    placeholder="Contanos brevemente sobre tu caso..."
+                    required
+                  ></textarea>
+                </div>
+                <div className="text-center">
+                  <motion.button
+                    type="submit"
+                    className="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold text-lg w-full sm:w-auto"
+                    whileHover={{
+                      scale: 1.05,
+                      y: -2,
+                      boxShadow:
+                        "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    Enviar Mensaje
+                  </motion.button>
+                </div>
+              </form>
+              {formStatus.message && (
+                <div
+                  className={`mt-6 text-center font-semibold ${formStatus.type === "success" ? "text-green-600" : "text-emerald-600"}`}
                 >
-                  resguardolegalmdp@gmail.com
-                </a>
-              </p>
+                  {formStatus.message}
+                </div>
+              )}
             </div>
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-gray-700 font-medium mb-2"
+          </AnimatedInView>
+          <AnimatedInView delay={0.4}>
+            <div className="bg-white p-8 rounded-lg shadow-lg h-full">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Información de Contacto
+              </h3>
+              <div className="space-y-4 text-gray-700">
+                <p className="flex items-start">
+                  <Icon className="fas fa-map-marker-alt mt-1 mr-3 text-emerald-600" />
+                  <span>
+                    Rivadavia 3174, Piso 5<br />
+                    Mar del Plata, Buenos Aires
+                  </span>
+                </p>
+                <p className="flex items-center">
+                  <Icon className="fas fa-envelope mr-3 text-emerald-600" />
+                  <a
+                    href="mailto:resguardolegalmdp@gmail.com"
+                    className="hover:underline"
                   >
-                    Nombre Completo
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-gray-700 font-medium mb-2"
+                    resguardolegalmdp@gmail.com
+                  </a>
+                </p>
+                <p className="flex items-center">
+                  <Icon className="fab fa-whatsapp mr-3 text-emerald-600" />
+                  <a
+                    href="https://wa.me/5492234567890"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
                   >
-                    Correo Electrónico
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                    required
-                  />
-                </div>
+                    (0223) 456-7890
+                  </a>
+                </p>
               </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="message"
-                  className="block text-gray-700 font-medium mb-2"
-                >
-                  Tu Mensaje
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                  placeholder="Contanos brevemente sobre tu caso..."
-                  required
-                ></textarea>
+              <div className="mt-6 rounded-lg overflow-hidden shadow-md">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.834036909875!2d-57.54982268467576!3d-38.0044529797184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584de1e35334d7b%3A0x23a1f73e97f51684!2sAv.%20Rivadavia%203174%2C%20B7600GXR%20Mar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1662660281931!5m2!1ses-419!2sar"
+                  width="100%"
+                  height="250"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de la oficina"
+                ></iframe>
               </div>
-              <div className="text-center">
-                <motion.button
-                  type="submit"
-                  className="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold text-lg w-full sm:w-auto"
-                  whileHover={{
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow:
-                      "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-                  }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  Enviar Mensaje
-                </motion.button>
-              </div>
-            </form>
-            {formStatus.message && (
-              <div
-                className={`mt-6 text-center font-semibold ${formStatus.type === "success" ? "text-green-600" : "text-emerald-600"}`}
-              >
-                {formStatus.message}
-              </div>
-            )}
-          </div>
-        </AnimatedInView>
+            </div>
+          </AnimatedInView>
+        </div>
       </div>
     </section>
   );
@@ -489,6 +765,14 @@ const Footer = () => {
             className="text-gray-400 hover:text-white transition duration-300"
           >
             <Icon className="fas fa-envelope text-2xl" />
+          </a>
+          <a
+            href="https://wa.me/5492234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition duration-300"
+          >
+            <Icon className="fab fa-whatsapp text-2xl" />
           </a>
           <a
             href="#"
@@ -538,16 +822,21 @@ export default function App() {
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        //@ts-expect-error bla
         xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
       />
+      <TopBar />
       <Header />
       <main>
         <Hero />
         <CallToAction />
         <Specialties />
+        <Team />
         <About />
+        <Testimonials />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
