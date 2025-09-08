@@ -23,7 +23,6 @@ const AnimatedInView = ({
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-
   return (
     <motion.div
       ref={ref}
@@ -41,13 +40,11 @@ const AnimatedInView = ({
 // Header Component
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const navLinks = [
-    { href: "#services", label: "Servicios" },
+    { href: "#specialties", label: "Especialidades" },
     { href: "#about", label: "Quiénes Somos" },
     { href: "#contact", label: "Contacto" },
   ];
-
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -116,7 +113,7 @@ const Header = () => {
 
 // Hero Section Component
 const Hero = () => (
-  <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center text-white text-center">
+  <section className="relative h-[70vh] md:h-[80vh] flex items-center justify-center text-white text-center">
     <div
       className="absolute inset-0 bg-cover bg-center"
       style={{
@@ -127,12 +124,17 @@ const Hero = () => (
     <div className="absolute inset-0 bg-gradient-to-r from-gray-800/95 to-gray-700/85"></div>
     <div className="relative z-10 px-6">
       <AnimatedInView>
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-          Protegemos sus derechos, aseguramos su futuro.
+        <h1 className="text-5xl md:text-7xl font-bold tracking-wider mb-4">
+          RESGUARDO LEGAL
         </h1>
+        <p className="text-xl md:text-2xl text-gray-200 mb-2 font-light">
+          PROTEGEMOS TUS DERECHOS.
+        </p>
         <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-          Asesoramiento jurídico integral en Mar del Plata con la confianza y
-          profesionalismo que usted merece.
+          Estamos para asesorarte y brindarte soluciones jurídicas acordes a tu
+          caso.
+          <br />
+          Recordá que conocer tus derechos es protegerlos.
         </p>
         <motion.a
           href="#contact"
@@ -145,112 +147,88 @@ const Hero = () => (
           }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          Agende su Consulta
+          ¡CONSULTÁNOS!
         </motion.a>
       </AnimatedInView>
     </div>
   </section>
 );
 
-// Services Section Component
-const Services = () => {
-  const [activeTab, setActiveTab] = useState("laboral");
+// Call to Action Section
+const CallToAction = () => (
+  <section className="bg-gray-800 text-white">
+    <div className="container mx-auto px-6 py-12 text-center">
+      <h2 className="text-3xl font-bold mb-2">
+        Tu caso es único, consúltanos.
+      </h2>
+      <p className="text-gray-300 mb-6 text-lg">
+        Enviá tu consulta gratuitamente y da el primer paso para encontrar una
+        solución.
+      </p>
+      <motion.a
+        href="#contact"
+        className="bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold inline-block text-md"
+        whileHover={{
+          scale: 1.05,
+          y: -2,
+          boxShadow:
+            "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        Hacer una consulta
+      </motion.a>
+    </div>
+  </section>
+);
 
+// Specialties Section Component
+const Specialties = () => {
+  const [activeTab, setActiveTab] = useState("laboral");
   const servicesData = {
+    amparos: {
+      icon: "fas fa-file-medical-alt",
+      title: "Amparos de Salud y por Mora",
+      description:
+        "Defendemos tu derecho a la salud y agilizamos los procesos administrativos para garantizar una respuesta rápida y efectiva.",
+      items: [{ title: "Amparos de Salud" }, { title: "Amparos por Mora" }],
+    },
     laboral: {
       icon: "fas fa-briefcase",
-      title: "Asesoramiento Integral en Derecho Laboral",
+      title: "Derecho Laboral y ART",
       description:
-        "Brindamos representación tanto a trabajadores como a empleadores, buscando siempre la resolución más justa y eficiente.",
+        "Representación experta para trabajadores, protegiendo tus derechos frente a despidos, accidentes y condiciones laborales injustas.",
       items: [
-        {
-          title: "Despidos y Telegramas",
-          text: "Redacción y contestación de telegramas, cálculo de indemnizaciones.",
-        },
-        {
-          title: "Accidentes de Trabajo (ART)",
-          text: "Reclamos por accidentes laborales y enfermedades profesionales.",
-        },
-        {
-          title: "Trabajo no registrado",
-          text: "Asesoramiento y reclamos para regularizar la situación laboral.",
-        },
-        {
-          title: "Audiencias SECLO",
-          text: "Representación en audiencias de conciliación obligatoria.",
-        },
-      ],
-    },
-    familia: {
-      icon: "fas fa-users",
-      title: "Acompañamiento en Derecho de Familia",
-      description:
-        "Entendemos la sensibilidad de estos asuntos y ofrecemos un acompañamiento cercano y profesional para proteger a su familia.",
-      items: [
-        {
-          title: "Divorcios",
-          text: "De común acuerdo o unilaterales, con un enfoque en la celeridad del proceso.",
-        },
-        {
-          title: "Cuidado Personal y Régimen de Visitas",
-          text: "Acuerdos para garantizar el bienestar de los hijos.",
-        },
-        {
-          title: "Cuota Alimentaria",
-          text: "Fijación, aumento o cese de la obligación alimentaria.",
-        },
-        {
-          title: "Uniones Convivenciales",
-          text: "Asesoramiento sobre pactos de convivencia y cese de la unión.",
-        },
+        { title: "Accidentes de Trabajo (ART)" },
+        { title: "Enfermedad Profesional" },
+        { title: "Despidos sin causa y con causa" },
+        { title: "Diferencias Salariales" },
+        { title: "Trabajo no registrado" },
       ],
     },
     civil: {
       icon: "fas fa-gavel",
-      title: "Soluciones en Derecho Civil y Comercial",
+      title: "Derecho Civil",
       description:
-        "Protegemos sus intereses personales, patrimoniales y comerciales con estrategias legales sólidas.",
+        "Soluciones legales para proteger tus intereses personales y patrimoniales en diversas situaciones de la vida cotidiana.",
       items: [
-        {
-          title: "Contratos",
-          text: "Redacción y revisión de contratos de alquiler, compraventa y comerciales.",
-        },
-        {
-          title: "Daños y Perjuicios",
-          text: "Reclamos por accidentes de tránsito y responsabilidad civil.",
-        },
-        {
-          title: "Defensa del Consumidor",
-          text: "Asesoramiento ante conflictos con empresas y proveedores.",
-        },
-        {
-          title: "Constitución de Sociedades",
-          text: "Creación de S.A.S., S.R.L. y otras formas societarias.",
-        },
+        { title: "Sucesiones" },
+        { title: "Desalojos" },
+        { title: "Accidentes de Tránsito" },
+        { title: "Defensa del Consumidor" },
       ],
     },
-    sucesiones: {
-      icon: "fas fa-file-signature",
-      title: "Gestión de Procesos Sucesorios",
+    familia: {
+      icon: "fas fa-users",
+      title: "Derecho de Familia",
       description:
-        "Nos encargamos de todo el proceso sucesorio para asegurar una correcta transmisión de los bienes, brindando contención y claridad.",
+        "Acompañamiento sensible y profesional en los momentos más delicados, buscando siempre el bienestar de tu familia.",
       items: [
-        {
-          title: "Declaratoria de Herederos",
-          text: "Inicio y gestión del proceso judicial sucesorio.",
-        },
-        {
-          title: "Testamentos",
-          text: "Asesoramiento para la redacción y validación de testamentos.",
-        },
-        {
-          title: "Inscripción de Bienes",
-          text: "Trámites para inscribir los bienes a nombre de los herederos.",
-        },
-        {
-          title: "Partición de Herencia",
-          text: "Acuerdos de partición y adjudicación de bienes.",
-        },
+        { title: "Alimentos" },
+        { title: "Divorcios" },
+        { title: "Régimen de Comunicación" },
+        { title: "Adopción por Integración" },
+        { title: "Determinación de la Incapacidad (Curatela)" },
       ],
     },
   };
@@ -258,7 +236,7 @@ const Services = () => {
   const TabButton = ({ id, label }: { id: string; label: string }) => (
     <button
       onClick={() => setActiveTab(id)}
-      className={`text-lg font-medium py-3 px-6 border-b-2 transition duration-300 ${
+      className={`text-md sm:text-lg font-medium py-3 px-4 sm:px-6 border-b-2 transition duration-300 flex-grow text-center ${
         activeTab === id
           ? "border-emerald-500 text-emerald-700 bg-emerald-100/50"
           : "border-transparent text-gray-500 hover:text-emerald-600"
@@ -270,28 +248,27 @@ const Services = () => {
 
   //@ts-expect-error bla
   const currentService = servicesData[activeTab];
-
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="specialties" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <AnimatedInView>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Nuestras Áreas de Práctica
+              ESPECIALIDADES
             </h2>
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              Soluciones legales específicas y efectivas para cada una de sus
+              Soluciones legales específicas y efectivas para cada una de tus
               necesidades.
             </p>
           </div>
         </AnimatedInView>
         <AnimatedInView delay={0.2}>
           <div className="max-w-4xl mx-auto">
-            <div className="flex flex-wrap justify-center border-b border-gray-200 mb-8">
-              <TabButton id="laboral" label="Derecho Laboral" />
-              <TabButton id="familia" label="Derecho de Familia" />
-              <TabButton id="civil" label="Civil y Comercial" />
-              <TabButton id="sucesiones" label="Sucesiones" />
+            <div className="flex flex-col sm:flex-row justify-center border-b border-gray-200 mb-8">
+              <TabButton id="amparos" label="Amparos" />
+              <TabButton id="laboral" label="Laboral y ART" />
+              <TabButton id="civil" label="Civil" />
+              <TabButton id="familia" label="Familia" />
             </div>
             <motion.div
               key={activeTab}
@@ -310,14 +287,13 @@ const Services = () => {
                   <p className="text-gray-600 mb-4">
                     {currentService.description}
                   </p>
-                  <ul className="list-disc list-inside text-gray-600 space-y-2">
-                    {currentService.items.map(
-                      (item: { title: string; text: string }) => (
-                        <li key={item.title}>
-                          <strong>{item.title}:</strong> {item.text}
-                        </li>
-                      ),
-                    )}
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-gray-700">
+                    {currentService.items.map((item: { title: string }) => (
+                      <li key={item.title} className="flex items-center">
+                        <Icon className="fas fa-check-circle text-emerald-500 mr-2" />
+                        {item.title}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -346,33 +322,20 @@ const About = () => (
         <div className="md:w-1/2">
           <AnimatedInView delay={0.2}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Comprometidos con su Tranquilidad
+              Comprometidos con tu Tranquilidad
             </h2>
             <p className="text-gray-700 mb-4">
               En <strong>Resguardo Legal</strong>, entendemos que cada caso es
               único y merece una atención personalizada. Nuestro equipo de
               abogados en Mar del Plata combina experiencia, conocimiento y una
-              dedicación inquebrantable para ofrecerle la mejor estrategia
+              dedicación inquebrantable para ofrecerte la mejor estrategia
               legal.
             </p>
             <p className="text-gray-700 mb-6">
               Nuestra misión es construir relaciones de confianza a largo plazo,
               brindando un servicio transparente, ético y orientado a
-              resultados. Su tranquilidad es nuestro principal objetivo.
+              resultados. Tu tranquilidad es nuestro principal objetivo.
             </p>
-            <motion.a
-              href="#contact"
-              className="bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold inline-block"
-              whileHover={{
-                scale: 1.05,
-                y: -2,
-                boxShadow:
-                  "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-              }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              Conozca a nuestro equipo
-            </motion.a>
           </AnimatedInView>
         </div>
       </div>
@@ -383,15 +346,14 @@ const About = () => (
 // Contact Section Component
 const Contact = () => {
   const [formStatus, setFormStatus] = useState({ message: "", type: "" });
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormStatus({ message: "Enviando su mensaje...", type: "info" });
-
+    setFormStatus({ message: "Enviando tu mensaje...", type: "info" });
+    // This is a mock submission. In a real app, you'd handle the form submission here.
     setTimeout(() => {
       setFormStatus({
         message:
-          "¡Gracias por su mensaje! Nos pondremos en contacto con usted a la brevedad.",
+          "¡Gracias por tu mensaje! Nos pondremos en contacto con vos a la brevedad.",
         type: "success",
       });
       //@ts-expect-error bla
@@ -399,23 +361,33 @@ const Contact = () => {
       setTimeout(() => setFormStatus({ message: "", type: "" }), 5000);
     }, 2000);
   };
-
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <AnimatedInView>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Contáctenos
+              Contáctanos
             </h2>
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              ¿Tiene una consulta? Complete el formulario o envíenos un mensaje.
-              Estamos aquí para ayudarle.
+              ¿Tenés una consulta? Completá el formulario o envianos un mensaje.
+              Estamos aquí para ayudarte.
             </p>
           </div>
         </AnimatedInView>
         <AnimatedInView delay={0.2}>
           <div className="max-w-4xl mx-auto bg-gray-50 p-8 sm:p-12 rounded-lg shadow-lg">
+            <div className="text-center mb-8">
+              <p className="text-gray-700 text-lg">
+                <Icon className="fas fa-envelope mr-2 text-emerald-600" />
+                <a
+                  href="mailto:resguardolegalmdp@gmail.com"
+                  className="hover:underline"
+                >
+                  resguardolegalmdp@gmail.com
+                </a>
+              </p>
+            </div>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -451,31 +423,17 @@ const Contact = () => {
               </div>
               <div className="mb-6">
                 <label
-                  htmlFor="subject"
-                  className="block text-gray-700 font-medium mb-2"
-                >
-                  Asunto
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                  required
-                />
-              </div>
-              <div className="mb-6">
-                <label
                   htmlFor="message"
                   className="block text-gray-700 font-medium mb-2"
                 >
-                  Su Mensaje
+                  Tu Mensaje
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={5}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  placeholder="Contanos brevemente sobre tu caso..."
                   required
                 ></textarea>
               </div>
@@ -523,14 +481,14 @@ const Footer = () => {
           Resguardo Legal
         </a>
         <p className="mt-4 mb-6 text-gray-400 max-w-md mx-auto">
-          Brindando certeza y seguridad jurídica a nuestros clientes desde 2010.
+          Brindando certeza y seguridad jurídica a nuestros clientes.
         </p>
         <div className="flex justify-center space-x-6 mb-8">
           <a
-            href="#"
+            href="mailto:resguardolegalmdp@gmail.com"
             className="text-gray-400 hover:text-white transition duration-300"
           >
-            <Icon className="fab fa-facebook-f text-2xl" />
+            <Icon className="fas fa-envelope text-2xl" />
           </a>
           <a
             href="#"
@@ -538,18 +496,18 @@ const Footer = () => {
           >
             <Icon className="fab fa-linkedin-in text-2xl" />
           </a>
-          <a
-            href="#"
-            className="text-gray-400 hover:text-white transition duration-300"
-          >
-            <Icon className="fab fa-twitter text-2xl" />
-          </a>
         </div>
         <p className="text-gray-500 text-sm">
           &copy; {currentYear} Resguardo Legal. Todos los derechos reservados.
         </p>
         <p className="text-gray-500 text-sm mt-1">
-          Av. Colón 3000, Mar del Plata, Argentina | (0223) 456-7890
+          Rivadavia 3174, Piso 5, Mar del Plata, Argentina |{" "}
+          <a
+            href="mailto:resguardolegalmdp@gmail.com"
+            className="hover:underline"
+          >
+            resguardolegalmdp@gmail.com
+          </a>
         </p>
       </div>
     </footer>
@@ -566,6 +524,7 @@ const WhatsAppButton = () => (
     whileHover={{ scale: 1.1, rotate: 10 }}
     whileTap={{ scale: 0.9 }}
     transition={{ type: "spring", stiffness: 300 }}
+    aria-label="Contactar por WhatsApp"
   >
     <Icon className="fab fa-whatsapp text-4xl" />
   </motion.a>
@@ -574,11 +533,20 @@ const WhatsAppButton = () => (
 // Main App Component
 export default function App() {
   return (
-    <div className="bg-gray-100 text-gray-800">
+    <div className="bg-gray-100 text-gray-800 font-sans">
+      {/* Font Awesome CDN for icons */}
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"
+      />
       <Header />
       <main>
         <Hero />
-        <Services />
+        <CallToAction />
+        <Specialties />
         <About />
         <Contact />
       </main>
