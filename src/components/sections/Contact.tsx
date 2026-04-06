@@ -82,7 +82,7 @@ export function Contact() {
                       id="name"
                       name="name"
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-                      placeholder="Juan Pérez"
+                      placeholder="Nombre y Apellido"
                       required
                       disabled={isSubmitting}
                     />
@@ -106,21 +106,44 @@ export function Contact() {
                   </div>
                 </div>
 
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-gray-700 font-semibold mb-2"
-                  >
-                    Teléfono (opcional)
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-                    placeholder="(0223) 123-4567"
-                    disabled={isSubmitting}
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-gray-700 font-semibold mb-2"
+                    >
+                      Teléfono (opcional)
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                      placeholder="(0223) 123-4567"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="caseType"
+                      className="block text-gray-700 font-semibold mb-2"
+                    >
+                      Tipo de Consulta
+                    </label>
+                    <select
+                      id="caseType"
+                      name="caseType"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all bg-white"
+                      disabled={isSubmitting}
+                    >
+                      <option value="">Seleccioná una opción</option>
+                      <option value="laboral">Derecho Laboral</option>
+                      <option value="familia">Derecho de Familia</option>
+                      <option value="civil">Derecho Civil</option>
+                      <option value="amparos">Amparos de Salud</option>
+                      <option value="otro">Otro</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>

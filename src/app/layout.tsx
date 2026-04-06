@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { StructuredData } from "@/components/StructuredData";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -21,7 +17,11 @@ export const metadata: Metadata = {
     "Estudio jurídico en Mar del Plata especializado en Derecho Laboral, Familia, Civil y Amparos de Salud. Primera consulta gratuita. Protegemos tus derechos.",
   keywords: [
     "abogados mar del plata",
-    "estudio juridico",
+    "estudio juridico mar del plata",
+    "abogado laboral mar del plata",
+    "abogado despido mar del plata",
+    "amparo salud mar del plata",
+    "divorcio mar del plata",
     "derecho laboral",
     "despidos",
     "amparos de salud",
@@ -30,8 +30,12 @@ export const metadata: Metadata = {
     "accidentes de trabajo",
     "ART",
     "sucesiones",
-    "abogado laboral mar del plata",
+    "derecho civil",
   ],
+  other: {
+    "geo.region": "AR-B",
+    "geo.placename": "Mar del Plata",
+  },
   authors: [{ name: "Resguardo Legal" }],
   creator: "Resguardo Legal",
   publisher: "Resguardo Legal",
@@ -96,9 +100,10 @@ export default function RootLayout({
     <html lang="es">
       <head>
         <link rel="preconnect" href="https://images.unsplash.com" />
+        <StructuredData />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
       >
         {children}
       </body>

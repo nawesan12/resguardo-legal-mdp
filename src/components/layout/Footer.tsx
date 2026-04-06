@@ -48,15 +48,23 @@ export function Footer() {
           </a>
         </div>
 
-        <p className="text-gray-500 text-sm">
-          &copy; {currentYear} Resguardo Legal. Todos los derechos reservados.
-        </p>
-        <p className="text-gray-500 text-sm mt-1">
-          {contactInfo.address.street}, {contactInfo.address.city} |{" "}
-          <a href={socialLinks.email} className="hover:underline">
-            {contactInfo.email}
-          </a>
-        </p>
+        <div className="border-t border-gray-800 pt-8 mt-8 space-y-3">
+          <p className="text-gray-500 text-xs max-w-2xl mx-auto">
+            Este sitio no constituye asesoramiento jurídico. La información proporcionada es de carácter general y no reemplaza una consulta profesional.
+          </p>
+          <p className="text-gray-500 text-xs">
+            Matriculados en el Colegio de Abogados del Dpto. Judicial de Mar del Plata.
+          </p>
+          <p className="text-gray-500 text-sm mt-4">
+            &copy; {currentYear} Resguardo Legal. Todos los derechos reservados.
+          </p>
+          <p className="text-gray-500 text-sm">
+            {contactInfo.address.street}, {contactInfo.address.city} |{" "}
+            <a href={socialLinks.email} className="hover:underline">
+              {contactInfo.email}
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

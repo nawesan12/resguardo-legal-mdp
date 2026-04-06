@@ -14,7 +14,6 @@ export const contactInfo: ContactInfo = {
 
 export const navLinks: NavLink[] = [
   { href: "#specialties", label: "Especialidades" },
-  { href: "#team", label: "Equipo" },
   { href: "#about", label: "Quiénes Somos" },
   { href: "#faq", label: "Preguntas" },
   { href: "#contact", label: "Contacto" },
